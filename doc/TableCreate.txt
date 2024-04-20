@@ -1,6 +1,7 @@
 
-USE ADM_weighingconveyor_scada;
+CREATE DATABASE IF NOT EXISTS ADM_ProductionManage;
 
+USE ADM_ProductionManage;
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -56,8 +57,8 @@ CREATE TABLE `prod_shift_data` (
     `cust_code` VARCHAR(50) DEFAULT NULL,
     `device_code` VARCHAR(50) DEFAULT NULL,
     `qty_tare_weigh` DECIMAL(18, 2) DEFAULT NULL,
-    `qty_order_weigh` DECIMAL(18, 2), --//
-    `loose_uom` VARCHAR(10) DEFAULT NULL, --//
+    `qty_order_weigh` DECIMAL(18, 2),
+    `loose_uom` VARCHAR(10) DEFAULT NULL,
     `created_by` VARCHAR(50) DEFAULT NULL,
     `created_date` DATETIME DEFAULT NULL,
     `updated_by` VARCHAR(50) DEFAULT NULL,
@@ -78,7 +79,7 @@ CREATE TABLE `weigh_session` (
     `qty_counted` INT,
     `qty_weighed` DECIMAL(18, 2),
     `qty_tare_weigh` DECIMAL(18, 2),
-    `qty_good_weigh` DECIMAL(18, 2), --//
+    `qty_good_weigh` DECIMAL(18, 2),
     `qty_order_weigh` DECIMAL(18, 2),
     `gap` DECIMAL(18, 2),
     `document_no` VARCHAR(50),
@@ -96,19 +97,19 @@ DROP TABLE IF EXISTS `weigh_session_d`;
 CREATE TABLE `weigh_session_d` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `session_code` VARCHAR(50),
-    `current_weigh` DECIMAL(18, 2), -- from plc
-    `barcode` VARCHAR(20) DEFAULT NULL, -- from plc
-    `prod_code` VARCHAR(50) DEFAULT NULL, -- from last `prod_shift_data`
-    `prod_fullname` VARCHAR(255) DEFAULT NULL, -- from last `prod_shift_data`
-    `prod_d365_code` VARCHAR(50) DEFAULT NULL, -- from `Product` that product_code = product_code of last `prod_shift_data`
-    `production_date` DATETIME DEFAULT NULL, -- from `Product` that product_code = product_code of last `prod_shift_data`
-    `start_time` DATETIME DEFAULT NULL, -- from `weigh_session` parent
-    `end_time` DATETIME DEFAULT NULL, -- from `weigh_session` parent
-    `qty_counted` INT, -- -- from `weigh_session` parent
-    `qty_weighed` DECIMAL(18, 2), -- from `weigh_session` parent
-    `gap` DECIMAL(18, 2), -- from `weigh_session` parent
-    `shift_data_id` INT NULL, -- `prod_shift_data` id
-    `created_date` DATETIME DEFAULT NULL, -- now
+    `current_weigh` DECIMAL(18, 2),
+    `barcode` VARCHAR(20) DEFAULT NULL,
+    `prod_code` VARCHAR(50) DEFAULT NULL,
+    `prod_fullname` VARCHAR(255) DEFAULT NULL,
+    `prod_d365_code` VARCHAR(50) DEFAULT NULL,
+    `production_date` DATETIME DEFAULT NULL,
+    `start_time` DATETIME DEFAULT NULL,
+    `end_time` DATETIME DEFAULT NULL,
+    `qty_counted` INT,
+    `qty_weighed` DECIMAL(18, 2),
+    `gap` DECIMAL(18, 2),
+    `shift_data_id` INT NULL,
+    `created_date` DATETIME DEFAULT NULL,
     `created_by` VARCHAR(50) DEFAULT NULL,
     `updated_date` DATETIME DEFAULT NULL,
     `updated_by` VARCHAR(50) DEFAULT NULL
