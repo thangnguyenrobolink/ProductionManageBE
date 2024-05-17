@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework_simplejwt',
-    'corsheaders'
+    'corsheaders',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -86,8 +87,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'production',
         'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
+        'PASSWORD': 'Thuong221096',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
