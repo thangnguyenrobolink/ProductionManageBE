@@ -4,6 +4,7 @@ from rest_framework import generics, status
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from api.base.custom_pagination import CustomLimitOffsetPagination
+from api.user.user_filter import UserFilter
 from api.user.user_serializer import UserSerializer
 
 
@@ -11,6 +12,8 @@ class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     pagination_class = CustomLimitOffsetPagination
+    filterset_class = UserFilter
+    ordering_fields = ['username', 'email']
     permission_classes = [IsAdminUser]
 
     def post(self, request, *args, **kwargs):
