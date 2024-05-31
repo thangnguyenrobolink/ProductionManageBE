@@ -3,12 +3,14 @@ from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
+from api.base.custom_pagination import CustomLimitOffsetPagination
 from api.user.user_serializer import UserSerializer
 
 
 class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    pagination_class = CustomLimitOffsetPagination
     permission_classes = [IsAdminUser]
 
     def list(self, request):
