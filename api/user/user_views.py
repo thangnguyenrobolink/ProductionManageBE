@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework import generics, status
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from api.base.custom_pagination import CustomLimitOffsetPagination
 from api.user.user_filter import UserFilter
@@ -23,3 +23,8 @@ class UserListCreate(generics.ListCreateAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
