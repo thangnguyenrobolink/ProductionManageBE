@@ -4,3 +4,6 @@ djangorestframework-simplejwt
 mysqlclient
 django-cors-headers
 django-filter
+dj-database-url
+gunicorn
+requests==2.31.0
